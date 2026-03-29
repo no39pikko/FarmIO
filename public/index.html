@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>FarmIO</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="login-screen">
+    <h1>FarmIO</h1>
+    <p>2D Farming Survival</p>
+    <input id="name-input" type="text" placeholder="名前を入力..." maxlength="16" autocomplete="off">
+    <div style="margin:8px 0;">
+      <label style="color:#aaa;font-size:13px;">
+        <input type="checkbox" id="force-pc-mode"> PC操作を使用（マウス＋キーボード）
+      </label>
+    </div>
+    <button id="play-btn">Play</button>
+    <div class="controls-info">
+      <p>WASD: 移動 | 左クリック: 攻撃/収穫 | 右クリック: 種を植える | Shift: ダッシュ | 1-6: スキル割り振り</p>
+    </div>
+  </div>
+
+  <!-- Death Screen -->
+  <div id="death-screen" class="hidden">
+    <h2>You Died!</h2>
+    <p id="death-msg"></p>
+    <p>リスポーン中...</p>
+  </div>
+
+  <!-- Evolution Panel -->
+  <div id="evolve-panel" class="hidden"></div>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div id="hud-top-left">
+      <div id="hp-bar-container">
+        <div id="hp-bar"></div>
+        <span id="hp-text"></span>
+      </div>
+      <div id="xp-bar-container">
+        <div id="xp-bar"></div>
+        <span id="xp-text"></span>
+      </div>
+      <div id="level-text"></div>
+      <div id="seed-bar-container">
+        <div id="seed-bar"></div>
+        <span id="seed-text"></span>
+      </div>
+      <div id="blink-bar-container">
+        <div id="blink-bar"></div>
+        <span id="blink-text"></span>
+      </div>
+    </div>
+    <div id="skill-wrapper">
+      <div id="sp-text"></div>
+      <div id="skill-panel"></div>
+    </div>
+    <div id="leaderboard">
+      <h3>Leaderboard</h3>
+      <ol id="lb-list"></ol>
+    </div>
+    <div id="killfeed"></div>
+    <div id="seed-selector" class="hidden">
+      <div id="seed-selector-label"></div>
+      <div id="seed-selector-hint">Click/Scroll: 切替</div>
+    </div>
+    <div id="volume-control">
+      <span id="volume-icon">&#9834;</span>
+      <input id="volume-slider" type="range" min="0" max="100" value="30">
+    </div>
+    <div id="minimap-container">
+      <canvas id="minimap" width="150" height="150"></canvas>
+    </div>
+  </div>
+
+  <!-- Game Canvas -->
+  <canvas id="game-canvas"></canvas>
+
+  <!-- Mobile Touch UI (hidden on PC) -->
+  <div id="mobile-ui" class="hidden">
+    <div id="joystick-zone"></div>
+    <div id="attack-zone"></div>
+    <button id="mobile-plant-btn">Plant</button>
+    <button id="mobile-dash-btn">Dash</button>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/protocol.js"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/Camera.js"></script>
+  <script src="js/GameState.js"></script>
+  <script src="js/Renderer.js"></script>
+  <script src="js/nipplejs.js"></script>
+  <script src="js/InputHandler.js"></script>
+  <script src="js/NetworkManager.js"></script>
+  <script src="js/HUD.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

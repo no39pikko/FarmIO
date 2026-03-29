@@ -1,0 +1,14 @@
+{
+  "name": "farmio",
+  "version": "1.0.0",
+  "description": "2D Farming Multiplayer Survival .io Game",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nipplejs": "^0.10.2",
+    "socket.io": "^4.7.4"
+  }
+}
