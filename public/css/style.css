@@ -226,6 +226,42 @@ body {
   background: rgba(241,196,15,0.3);
 }
 
+/* Mobile skill rows */
+.skill-row-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  padding: 4px 10px;
+  margin: 1px 0;
+  border-radius: 4px;
+  opacity: 0.6;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.skill-row-mobile.upgradeable {
+  opacity: 1;
+  background: rgba(241,196,15,0.15);
+}
+
+.skill-row-mobile:active {
+  background: rgba(241,196,15,0.3);
+}
+
+.skill-mobile-label {
+  font-size: 13px;
+  color: #ccc;
+}
+
+.skill-mobile-val {
+  font-size: 15px;
+  font-weight: bold;
+  color: #f1c40f;
+  min-width: 16px;
+  text-align: right;
+}
+
 #sp-text {
   font-size: 13px;
   color: #f1c40f;

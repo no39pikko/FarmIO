@@ -36,14 +36,15 @@ class HUD {
     }
 
     this.skillRows = [];
-    this.buildSkillPanel();
+    // buildSkillPanel called from main.js after input.init() determines isMobile
   }
 
-  buildSkillPanel() {
-    this.onSkillClick = null; // callback set by main.js
+  buildSkillPanel(isMobile) {
+    this.onSkillClick = null;
+    this._isMobile = isMobile;
     for (let i = 0; i < Constants.SKILL_NAMES.length; i++) {
       const row = document.createElement('div');
-      row.className = 'skill-row';
+      row.className = isMobile ? 'skill-row-mobile' : 'skill-row';
       row.style.cursor = 'pointer';
       row.style.userSelect = 'none';
 
@@ -52,27 +53,42 @@ class HUD {
         if (this.onSkillClick) this.onSkillClick(idx);
       });
 
-      const key = document.createElement('span');
-      key.className = 'skill-key';
-      key.textContent = (i + 1);
+      if (isMobile) {
+        // Mobile: compact "Label: 0" format
+        const label = document.createElement('span');
+        label.className = 'skill-mobile-label';
+        label.textContent = Constants.SKILL_LABELS[i];
+        const val = document.createElement('span');
+        val.className = 'skill-mobile-val';
+        val.textContent = '0';
+        row.appendChild(label);
+        row.appendChild(val);
+        this.skillPanel.appendChild(row);
+        this.skillRows.push({ row, valEl: val });
+      } else {
+        // PC: key + label + block gauge
+        const key = document.createElement('span');
+        key.className = 'skill-key';
+        key.textContent = (i + 1);
 
-      const label = document.createElement('span');
-      label.className = 'skill-label';
-      label.textContent = Constants.SKILL_LABELS[i];
+        const label = document.createElement('span');
+        label.className = 'skill-label';
+        label.textContent = Constants.SKILL_LABELS[i];
 
-      const blocks = document.createElement('span');
-      blocks.className = 'skill-blocks';
-      for (let j = 0; j < Constants.SKILL_MAX; j++) {
-        const b = document.createElement('span');
-        b.className = 'skill-block empty';
-        blocks.appendChild(b);
+        const blocks = document.createElement('span');
+        blocks.className = 'skill-blocks';
+        for (let j = 0; j < Constants.SKILL_MAX; j++) {
+          const b = document.createElement('span');
+          b.className = 'skill-block empty';
+          blocks.appendChild(b);
+        }
+
+        row.appendChild(key);
+        row.appendChild(label);
+        row.appendChild(blocks);
+        this.skillPanel.appendChild(row);
+        this.skillRows.push({ row, blocks });
       }
-
-      row.appendChild(key);
-      row.appendChild(label);
-      row.appendChild(blocks);
-      this.skillPanel.appendChild(row);
-      this.skillRows.push({ row, blocks });
     }
   }
 
@@ -155,13 +171,26 @@ class HUD {
     const names = Constants.SKILL_NAMES;
     for (let i = 0; i < names.length; i++) {
       const val = skills[names[i]] || 0;
-      const blockEls = this.skillRows[i].blocks.children;
+      const sr = this.skillRows[i];
+
+      if (this._isMobile) {
+        // Mobile: update number
+        sr.valEl.textContent = val;
+        if (sp > 0 && val < Constants.SKILL_MAX) {
+          sr.row.classList.add('upgradeable');
+        } else {
+          sr.row.classList.remove('upgradeable');
+        }
+        continue;
+      }
+
+      const blockEls = sr.blocks.children;
       for (let j = 0; j < Constants.SKILL_MAX; j++) {
         blockEls[j].className = 'skill-block ' + (j < val ? 'filled' : 'empty');
       }
       // Highlight upgradeable
       if (sp > 0 && val < Constants.SKILL_MAX) {
-        this.skillRows[i].row.classList.add('upgradeable');
+        sr.row.classList.add('upgradeable');
       } else {
         this.skillRows[i].row.classList.remove('upgradeable');
       }

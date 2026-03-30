@@ -112,6 +112,7 @@
   function startGame() {
     const name = nameInput.value.trim() || 'Farmer';
     input.init(); // Initialize input after user selects PC/mobile mode
+    hud.buildSkillPanel(input.isMobile);
     initBgm();
     network.connect();
     const waitForSocket = setInterval(() => {
