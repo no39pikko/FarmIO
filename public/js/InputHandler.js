@@ -47,9 +47,16 @@ class InputHandler {
     var mobileUI = document.getElementById('mobile-ui');
     if (mobileUI) mobileUI.classList.remove('hidden');
 
-    // Prevent default touch behaviors on canvas
-    canvas.addEventListener('touchstart', function(e) { e.preventDefault(); }, { passive: false });
-    canvas.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
+    // Prevent ALL default touch behaviors (zoom, scroll, etc)
+    document.addEventListener('touchstart', function(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+    }, { passive: false });
+    document.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
+    document.addEventListener('touchend', function(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+    }, { passive: false });
 
     // ── Virtual Joystick (left side) ──
     var joystickZone = document.getElementById('joystick-zone');

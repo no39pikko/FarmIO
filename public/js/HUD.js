@@ -46,11 +46,18 @@ class HUD {
     if (isMobile) {
       var wrapper = document.getElementById('skill-wrapper');
       if (wrapper) {
-        wrapper.style.left = '8px';
-        wrapper.style.bottom = '8px';
-        wrapper.style.padding = '4px 6px';
-        wrapper.style.fontSize = '11px';
+        wrapper.style.left = '4px';
+        wrapper.style.bottom = '4px';
+        wrapper.style.padding = '2px 4px';
+        wrapper.style.fontSize = '9px';
+        wrapper.style.zIndex = '200';
+        // Stop touch events from reaching joystick zone below
+        wrapper.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: false });
+        wrapper.addEventListener('touchend', function(e) { e.stopPropagation(); }, { passive: false });
       }
+      // Also hide SP text on mobile (redundant)
+      var spText = document.getElementById('sp-text');
+      if (spText) spText.style.fontSize = '10px';
     }
     for (let i = 0; i < Constants.SKILL_NAMES.length; i++) {
       const row = document.createElement('div');
@@ -59,9 +66,17 @@ class HUD {
       row.style.userSelect = 'none';
 
       const idx = i;
-      row.addEventListener('click', () => {
-        if (this.onSkillClick) this.onSkillClick(idx);
-      });
+      if (isMobile) {
+        row.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (this.onSkillClick) this.onSkillClick(idx);
+        }, { passive: false });
+      } else {
+        row.addEventListener('click', () => {
+          if (this.onSkillClick) this.onSkillClick(idx);
+        });
+      }
 
       if (isMobile) {
         // Mobile: compact "Label: 0" format
