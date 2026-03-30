@@ -216,6 +216,7 @@ body {
   padding: 8px 12px;
   border-radius: 8px;
   pointer-events: auto;
+  z-index: 70;
 }
 
 .skill-row:hover, .skill-row:active {
