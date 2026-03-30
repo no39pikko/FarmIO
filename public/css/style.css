@@ -218,9 +218,12 @@ body {
   pointer-events: auto;
 }
 
-.skill-row:hover {
-  background: rgba(255,255,255,0.1);
-  border-radius: 3px;
+.skill-row:hover, .skill-row:active {
+  background: rgba(255,255,255,0.15);
+}
+
+.skill-row.upgradeable:active {
+  background: rgba(241,196,15,0.3);
 }
 
 #sp-text {
@@ -233,9 +236,13 @@ body {
 .skill-row {
   display: flex;
   align-items: center;
-  height: 18px;
+  height: 32px;
   margin: 2px 0;
   opacity: 0.6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .skill-row.upgradeable {
@@ -243,8 +250,8 @@ body {
 }
 
 .skill-key {
-  width: 16px;
-  font-size: 11px;
+  width: 20px;
+  font-size: 13px;
   color: #f1c40f;
   text-align: center;
 }
@@ -255,10 +262,10 @@ body {
 }
 
 .skill-label {
-  width: 56px;
-  font-size: 10px;
+  width: 70px;
+  font-size: 12px;
   color: #ccc;
-  margin-left: 4px;
+  margin-left: 6px;
 }
 
 .skill-blocks {
