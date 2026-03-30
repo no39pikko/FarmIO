@@ -11,15 +11,15 @@
   <div id="login-screen">
     <h1>FarmIO</h1>
     <p>2D Farming Survival</p>
-    <input id="name-input" type="text" placeholder="名前を入力..." maxlength="16" autocomplete="off">
+    <input id="name-input" type="text" placeholder="Enter name..." maxlength="16" autocomplete="off">
     <div style="margin:8px 0;">
       <label style="color:#aaa;font-size:13px;">
-        <input type="checkbox" id="force-pc-mode"> PC操作を使用（マウス＋キーボード）
+        <input type="checkbox" id="force-pc-mode"> Use PC controls (mouse + keyboard)
       </label>
     </div>
     <button id="play-btn">Play</button>
     <div class="controls-info">
-      <p>WASD: 移動 | 左クリック: 攻撃/収穫 | 右クリック: 種を植える | Shift: ダッシュ | 1-6: スキル割り振り</p>
+      <p>WASD: Move | LMB: Attack/Harvest | RMB: Plant | Shift: Dash | 1-6: Skills</p>
     </div>
   </div>
 
@@ -27,7 +27,7 @@
   <div id="death-screen" class="hidden">
     <h2>You Died!</h2>
     <p id="death-msg"></p>
-    <p>リスポーン中...</p>
+    <p>Respawning...</p>
   </div>
 
   <!-- Evolution Panel -->
@@ -65,7 +65,7 @@
     <div id="killfeed"></div>
     <div id="seed-selector" class="hidden">
       <div id="seed-selector-label"></div>
-      <div id="seed-selector-hint">Click/Scroll: 切替</div>
+      <div id="seed-selector-hint">Click/Scroll: Switch</div>
     </div>
     <div id="volume-control">
       <span id="volume-icon">&#9834;</span>

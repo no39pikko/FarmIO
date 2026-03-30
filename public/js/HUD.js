@@ -102,9 +102,9 @@ class HUD {
     if (player.className === 'brewer') {
       const count = player.rageHarvestCount || 0;
       if (player.raging) {
-        this.levelText.textContent += '  酒乱中！';
+        this.levelText.textContent += '  RAGE!';
       } else {
-        this.levelText.textContent += '  収穫 ' + count + '/20';
+        this.levelText.textContent += '  Harvest ' + count + '/20';
       }
     }
 
@@ -135,11 +135,11 @@ class HUD {
       this.seedSelector.classList.remove('hidden');
       const typeInfo = Constants.PLANT_TYPES[plantType];
       const labels = {
-        wheat: '小麦', berry: 'ベリー', mint: 'ミント',
-        bug: '虫付け', pond: '池', pitTrap: '落とし穴', hedge: '生け垣', placedStone: '石',
-        chili: '唐辛子', pepper: '胡椒', rice: '米', corn: 'コーン', aconite: 'トリカブト',
-        grape: 'ブドウ', cactus: 'サボテン',
-        flowerRed: '赤花(攻撃)', flowerBlue: '青花(速度)', flowerWhite: '白花(回復)',
+        wheat: 'Wheat', berry: 'Berry', mint: 'Mint',
+        bug: 'Bug', pond: 'Pond', pitTrap: 'Pit Trap', hedge: 'Hedge', placedStone: 'Stone',
+        chili: 'Chili', pepper: 'Pepper', rice: 'Rice', corn: 'Corn', aconite: 'Aconite',
+        grape: 'Grape', cactus: 'Cactus',
+        flowerRed: 'Red Flower (ATK)', flowerBlue: 'Blue Flower (SPD)', flowerWhite: 'White Flower (HEAL)',
       };
       const label = labels[plantType] || plantType;
       const color = typeInfo ? typeInfo.matureColor : '#f1c40f';

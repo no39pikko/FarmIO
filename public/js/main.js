@@ -153,7 +153,7 @@
     }
   };
   network.onDeath = (data) => {
-    deathMsg.textContent = data.killer + ' に倒されました';
+    deathMsg.textContent = 'Killed by ' + data.killer;
     deathScreen.classList.remove('hidden');
   };
   network.onKillfeed = (data) => { hud.addKillfeed(data.killer, data.victim); };

@@ -10,5 +10,8 @@
     "express": "^4.18.2",
     "nipplejs": "^0.10.2",
     "socket.io": "^4.7.4"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.10"
   }
 }
