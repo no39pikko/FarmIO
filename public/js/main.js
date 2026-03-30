@@ -127,6 +127,7 @@
         myId = network.myId;
         loginScreen.classList.add('hidden');
         hudEl.classList.remove('hidden');
+        document.getElementById('skill-wrapper').classList.remove('hidden');
         running = true;
         requestAnimationFrame(gameLoop);
       }
