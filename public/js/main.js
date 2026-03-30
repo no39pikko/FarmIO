@@ -113,6 +113,7 @@
     const name = nameInput.value.trim() || 'Farmer';
     input.init(); // Initialize input after user selects PC/mobile mode
     hud.buildSkillPanel(input.isMobile);
+    hud.onSkillClick = function(idx) { network.sendSkill(idx); };
     initBgm();
     network.connect();
     const waitForSocket = setInterval(() => {
