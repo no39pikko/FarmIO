@@ -42,6 +42,16 @@ class HUD {
   buildSkillPanel(isMobile) {
     this.onSkillClick = null;
     this._isMobile = isMobile;
+    // Mobile: move skill panel to bottom-left, compact
+    if (isMobile) {
+      var wrapper = document.getElementById('skill-wrapper');
+      if (wrapper) {
+        wrapper.style.left = '8px';
+        wrapper.style.bottom = '8px';
+        wrapper.style.padding = '4px 6px';
+        wrapper.style.fontSize = '11px';
+      }
+    }
     for (let i = 0; i < Constants.SKILL_NAMES.length; i++) {
       const row = document.createElement('div');
       row.className = isMobile ? 'skill-row-mobile' : 'skill-row';
