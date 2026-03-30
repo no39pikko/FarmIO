@@ -4,8 +4,15 @@
   box-sizing: border-box;
 }
 
+html {
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+}
+
 body {
   background: #1a1a2e;
+  touch-action: manipulation;
+  overscroll-behavior: none;
   overflow: hidden;
   font-family: 'Courier New', monospace;
   color: #eee;
@@ -16,6 +23,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  touch-action: none;
 }
 
 /* Login Screen */
